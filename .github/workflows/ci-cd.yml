@@ -22,12 +22,22 @@ jobs:
       - name: Build with Maven
         run: mvn clean package
 
+      - name: Debug Maven Build Output
+        run: ls -R target
+
+      - name: Check for Artifacts
+        run: |
+          if [ ! -f target/*.jar ]; then
+            echo "Error: No artifacts found in target directory."
+            exit 1
+          fi
+
       - name: Archive production artifacts
         uses: actions/upload-artifact@v3
         with:
           name: packaged-application
           path: target/*.jar
-
+  
   deploy:
     needs: build
     runs-on: ubuntu-latest
