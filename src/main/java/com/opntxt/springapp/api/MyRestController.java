@@ -11,7 +11,7 @@ public class MyRestController {
 
     @GetMapping
     public String hello() {
-        return "Hello from Spring Boot";
+        return "Hello from Bengaluru";
     }
 
     @GetMapping("/message")
